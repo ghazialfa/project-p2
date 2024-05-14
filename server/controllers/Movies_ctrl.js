@@ -18,7 +18,7 @@ class Movies_ctrl {
         movies = await tmdbAPI.get("/discover/movie");
       }
 
-      console.log("🚀 ~ Movies_ctrl ~ getAll ~ movies:", movies);
+      // console.log("🚀 ~ Movies_ctrl ~ getAll ~ movies:", movies);
       res.status(200).json(movies.data);
     } catch (error) {
       console.log("🚀 ~ Movies_ctrl ~ getAll ~ error:", error);
@@ -30,7 +30,7 @@ class Movies_ctrl {
   static async getPopular(req, res, next) {
     try {
       const { data } = await tmdbAPI.get("/movie/popular");
-      console.log("🚀 ~ Movies_ctrl ~ getAll ~ data:", data);
+      // console.log("🚀 ~ Movies_ctrl ~ getAll ~ data:", data);
       res.status(200).json(data);
     } catch (error) {
       console.log("🚀 ~ Movies_ctrl ~ getAll ~ error:", error);
