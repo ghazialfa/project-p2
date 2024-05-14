@@ -37,6 +37,19 @@ class Movies_ctrl {
       next(error);
     }
   }
+
+  //* ─── Get Detail ──────────────────────────────────────────────────────
+  static async getDetail(req, res, next) {
+    try {
+      const { tmdbId } = req.params;
+
+      const movie = await tmdbAPI.get(`/movie/${tmdbId}`);
+      res.status(200).json(movie.data);
+    } catch (error) {
+      console.log("🚀 ~ Movies_ctrl ~ getDetail ~ error:", error);
+      next(error);
+    }
+  }
 }
 
 module.exports = Movies_ctrl;
