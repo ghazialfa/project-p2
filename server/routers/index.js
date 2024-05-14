@@ -7,5 +7,7 @@ router.post("/register", Auth_ctrl.register);
 router.post("/login", Auth_ctrl.login);
 
 router.use("/movies", require("./movies"));
+router.use("/genres", require("./genres"));
+router.use("/reviews", require("./reviews"));
 
 module.exports = router;
