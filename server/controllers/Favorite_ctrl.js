@@ -64,6 +64,25 @@ class Favorite_ctrl {
       next(error);
     }
   }
+
+  //* ─── Delete Favorite ─────────────────────────────────────────────────
+  static async deleteFavorite(req, res, next) {
+    try {
+      const { id } = req.params;
+      const { id: userId } = req.user;
+
+      const favorite = await Favorite.findOne({
+        where: { UserId: userId, MovieId: id },
+      });
+
+      await favorite.destroy();
+
+      res.status(200).json({ message: "Success deleted favorite" });
+    } catch (error) {
+      console.log("🚀 ~ Favorite_ctrl ~ deleteFavorite ~ error:", error);
+      next(error);
+    }
+  }
 }
 
 module.exports = Favorite_ctrl;
