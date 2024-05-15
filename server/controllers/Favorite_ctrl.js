@@ -9,11 +9,9 @@ class Favorite_ctrl {
       const { tmdbId } = req.params;
       const { id } = req.user;
 
-      const { data } = await tmdbAPI.get(`/movie/${tmdbId}`);
-
       const movie = await Movie.findOrCreate({
-        where: { name: data.title },
-        default: { name: data.title },
+        where: { tmdbId },
+        default: { tmdbId },
       });
 
       const favorite = await Favorite.findOrCreate({
@@ -40,11 +38,29 @@ class Favorite_ctrl {
 
       let movies = [];
 
-      // favorites.map(({Movie}) => {
-      //   const movie = await tmdbAPI.get("")
-      // })
+      for (const favorite of favorites) {
+        const { Movie } = favorite;
+        const { data } = await tmdbAPI.get(`/movie/${Movie.tmdbId}`);
+        movies.push(data);
+      }
 
-      res.status(200).json(favorites);
+      const output = movies.map((el) => ({
+        id: el.id,
+        title: el.title,
+        backdrop_path: el.backdrop_path,
+        genres: el.genres,
+        original_language: el.original_language,
+        overview: el.overview,
+        vote_count: el.vote_count,
+        vote_average: el.vote_average,
+        poster_path: el.poster_path,
+        release_date: el.release_date,
+        adult: el.adult,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }));
+
+      res.status(200).json(output);
     } catch (error) {
       console.log("🚀 ~ Favorite_ctrl ~ getFavorite ~ error:", error);
       next(error);

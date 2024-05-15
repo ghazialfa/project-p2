@@ -17,16 +17,16 @@ module.exports = (sequelize, DataTypes) => {
   }
   Movie.init(
     {
-      name: {
-        type: DataTypes.STRING,
+      tmdbId: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         unique: true,
         validate: {
           notEmpty: {
-            msg: "Movie name is required",
+            msg: "TMDB ID is required",
           },
           notNull: {
-            msg: "Movie name is required",
+            msg: "TMDB ID is required",
           },
         },
       },
