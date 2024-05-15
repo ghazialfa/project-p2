@@ -85,6 +85,7 @@ class Favorite_ctrl {
     }
   }
 
+  //* ─── Update Status Favorite ──────────────────────────────────────────
   static async updateStatus(req, res, next) {
     try {
       const { id } = req.params;

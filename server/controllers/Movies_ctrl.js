@@ -33,6 +33,29 @@ class Movies_ctrl {
     }
   }
 
+  //* ─── Get Backdrop ─────────────────────────────────────────────────────
+  static async getPoster(req, res, next) {
+    try {
+      const { data } = await tmdbAPI.get("/movie/popular");
+      // console.log("🚀 ~ Movies_ctrl ~ getPoster ~ data:", data);
+
+      const movies = [];
+
+      data.results.map((movie) => {
+        movies.push({
+          backdrop_path: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
+          poster_path: `https://image.tmdb.org/t/p/original${movie.poster_path}`,
+        });
+      });
+
+      // console.log("🚀 ~ Movies_ctrl ~ getAll ~ movies:", movies);
+      res.status(200).json(movies);
+    } catch (error) {
+      console.log("🚀 ~ Movies_ctrl ~ getAll ~ error:", error);
+      next(error);
+    }
+  }
+
   //* ─── Get Popular ───────────────────────────────────────────────────────────
   static async getPopular(req, res, next) {
     try {
