@@ -53,7 +53,7 @@ class Auth_ctrl {
 
       res.status(200).json({
         message: "Login Success",
-        user: { username: user.username, email: user.email },
+        user: { id: user.id, username: user.username, email: user.email },
         access_token,
       });
     } catch (error) {

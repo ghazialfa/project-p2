@@ -56,8 +56,6 @@ class Favorite_ctrl {
         poster_path: el.poster_path,
         release_date: el.release_date,
         adult: el.adult,
-        createdAt: new Date(),
-        updatedAt: new Date(),
       }));
 
       res.status(200).json(output);

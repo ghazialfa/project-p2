@@ -43,10 +43,25 @@ class Movies_ctrl {
     try {
       const { tmdbId } = req.params;
 
-      const movie = await tmdbAPI.get(`/movie/${tmdbId}`);
-      res.status(200).json(movie.data);
+      const { data } = await tmdbAPI.get(`/movie/${tmdbId}`);
+      res.status(200).json({
+        id: data.id,
+        title: data.title,
+        backdrop_path: data.backdrop_path,
+        genres: data.genres,
+        original_language: data.original_language,
+        overview: data.overview,
+        vote_count: data.vote_count,
+        vote_average: data.vote_average,
+        poster_path: data.poster_path,
+        release_date: data.release_date,
+        adult: data.adult,
+      });
     } catch (error) {
-      console.log("🚀 ~ Movies_ctrl ~ getDetail ~ error:", error);
+      console.log(
+        "🚀 ~ Movies_ctrl ~ getDetail ~ error:",
+        error.response.data.status_message
+      );
       next(error);
     }
   }
