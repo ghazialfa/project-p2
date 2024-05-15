@@ -12,6 +12,21 @@ const errHandler = (err, req, res, next) => {
       status = 400;
       message = err.errors[0].message;
       break;
+
+    case "AxiosError":
+      status = err.response.status;
+      message = err.response.data.status_message;
+      break;
+
+    case "InvalidToken":
+      status = 401;
+      message = "Invalid token";
+      break;
+
+    case "Unaunthenticated":
+      status = 401;
+      message = "You need to be authenticated first";
+      break;
   }
 
   res.status(status).json({ message });

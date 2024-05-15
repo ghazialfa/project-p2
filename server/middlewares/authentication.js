@@ -22,6 +22,6 @@ module.exports = authentication = async (req, res, next) => {
     next();
   } catch (error) {
     console.log("🚀 ~ module.exports=authentication= ~ error:", error);
-    next(error);
+    next({ name: "Unaunthenticated" });
   }
 };
