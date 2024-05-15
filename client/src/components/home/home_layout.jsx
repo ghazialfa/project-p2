@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Marquee from "../ui/marquee";
 
 export function Home_layout() {
   return (
@@ -25,16 +24,16 @@ export function Home_layout() {
 
         <div className="mx-auto aspect-[3/1] overflow-hidden rounded-t-xl object-cover bg-red-200">
           <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background py-20 md:shadow-xl">
-            <Marquee pauseOnHover className="[--duration:20s]">
-              {/* {firstRow.map((review) => (
+            {/* <Marquee pauseOnHover className="[--duration:20s]"> */}
+            {/* {firstRow.map((review) => (
                 <ReviewCard key={review.username} {...review} />
               ))} */}
-            </Marquee>
-            <Marquee reverse pauseOnHover className="[--duration:20s]">
-              {/* {secondRow.map((review) => (
+            {/* </Marquee> */}
+            {/* <Marquee reverse pauseOnHover className="[--duration:20s]"> */}
+            {/* {secondRow.map((review) => (
                 <ReviewCard key={review.username} {...review} />
               ))} */}
-            </Marquee>
+            {/* </Marquee> */}
             <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div>
             <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-background"></div>
           </div>

@@ -1,16 +1,12 @@
+import {
+  DropdownMenuTrigger,
+  DropdownMenuItem,
+  DropdownMenuContent,
+  DropdownMenu,
+} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
 
 export function Navbar() {
   return (
@@ -20,35 +16,69 @@ export function Navbar() {
         <span className="text-lg font-semibold">Movie App</span>
       </Link>
       <nav className="hidden items-center gap-4 md:flex">
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className="bg-gray">
-                Movies
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <NavigationMenuLink>Link</NavigationMenuLink>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className="bg-gray">
-                Genres
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <NavigationMenuLink>Link</NavigationMenuLink>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            <Link>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-gray">
-                  Ai Recommendation
-                </NavigationMenuTrigger>
-              </NavigationMenuItem>
-            </Link>
-          </NavigationMenuList>
-        </NavigationMenu>
+        <Link
+          className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300"
+          href="#">
+          Home
+        </Link>
+        <DropdownMenu>
+          <DropdownMenuTrigger className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer">
+            Genres
+            <ChevronDownIcon className="h-4 w-4 ml-1" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="bg-gray-200 text-gray-900 rounded-md shadow-lg py-2 px-4 dark:bg-gray-900 dark:text-white">
+            <DropdownMenuItem>
+              <Link
+                className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300 block py-2"
+                href="#">
+                Action
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link
+                className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300 block py-2"
+                href="#">
+                Comedy
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link
+                className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300 block py-2"
+                href="#">
+                Drama
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link
+                className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300 block py-2"
+                href="#">
+                Horror
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link
+                className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300 block py-2"
+                href="#">
+                Sci-Fi
+              </Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <Link
+          className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300"
+          href="#">
+          TV Shows
+        </Link>
+        <Link
+          className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300"
+          href="#">
+          Actors
+        </Link>
+        <Link
+          className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300"
+          href="#">
+          About
+        </Link>
       </nav>
       <div className="flex items-center gap-2">
         <div className="relative">
