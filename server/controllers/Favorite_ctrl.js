@@ -41,21 +41,22 @@ class Favorite_ctrl {
       for (const favorite of favorites) {
         const { Movie } = favorite;
         const { data } = await tmdbAPI.get(`/movie/${Movie.tmdbId}`);
-        movies.push(data);
+        movies.push({ dbId: Movie.id, data });
       }
 
-      const output = movies.map((el) => ({
-        id: el.id,
-        title: el.title,
-        backdrop_path: el.backdrop_path,
-        genres: el.genres,
-        original_language: el.original_language,
-        overview: el.overview,
-        vote_count: el.vote_count,
-        vote_average: el.vote_average,
-        poster_path: el.poster_path,
-        release_date: el.release_date,
-        adult: el.adult,
+      const output = movies.map(({ dbId, data }) => ({
+        dbId,
+        id: data.id,
+        title: data.title,
+        backdrop_path: data.backdrop_path,
+        genres: data.genres,
+        original_language: data.original_language,
+        overview: data.overview,
+        vote_count: data.vote_count,
+        vote_average: data.vote_average,
+        poster_path: data.poster_path,
+        release_date: data.release_date,
+        adult: data.adult,
       }));
 
       res.status(200).json(output);
@@ -80,6 +81,26 @@ class Favorite_ctrl {
       res.status(200).json({ message: "Success deleted favorite" });
     } catch (error) {
       console.log("🚀 ~ Favorite_ctrl ~ deleteFavorite ~ error:", error);
+      next(error);
+    }
+  }
+
+  static async updateStatus(req, res, next) {
+    try {
+      const { id } = req.params;
+      const { id: userId } = req.user;
+      const { status } = req.body;
+      console.log("🚀 ~ Favorite_ctrl ~ updateStatus ~ status:", status);
+
+      const favorite = await Favorite.findOne({
+        where: { UserId: userId, MovieId: id },
+      });
+
+      const favoriteUpdate = await favorite.update({ status });
+
+      res.status(200).json(favoriteUpdate);
+    } catch (error) {
+      console.log("🚀 ~ Favorite_ctrl ~ updateStatus ~ error:", error);
       next(error);
     }
   }
