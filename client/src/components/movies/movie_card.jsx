@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 
-export function Movie_card({ movie }) {
+export function Movie_card({ like, movie }) {
   return (
     <Link to={`/movie/${movie.id}`}>
       <Card className="w-full max-w-sm rounded-lg overflow-hidden relative shadow-lg">
@@ -27,7 +27,11 @@ export function Movie_card({ movie }) {
             </div>
           </div>
           <button className="absolute top-4 right-4">
-            <FaHeart className="hover:fill-red-400 w-5 h-5 fill-gray-400" />
+            {like ? (
+              <FaHeart className="fill-red-400 w-5 h-5 hover:fill-gray-400" />
+            ) : (
+              <FaHeart className="hover:fill-red-400 w-5 h-5 fill-gray-400" />
+            )}
           </button>
         </div>
         <div className="p-4">

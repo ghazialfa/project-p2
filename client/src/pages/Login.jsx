@@ -29,6 +29,7 @@ export default function Login() {
       });
 
       localStorage.setItem("token", data.access_token);
+      localStorage.setItem("userId", data.user.id);
       navigate("/h");
     } catch (error) {
       console.log("🚀 ~ handleSubmit ~ error:", error);

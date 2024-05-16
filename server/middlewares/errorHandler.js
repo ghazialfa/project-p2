@@ -13,11 +13,6 @@ const errHandler = (err, req, res, next) => {
       message = err.errors[0].message;
       break;
 
-    case "AxiosError":
-      status = err.response.status;
-      message = err.response.data.status_message;
-      break;
-
     case "InvalidToken":
       status = 401;
       message = "Invalid token";

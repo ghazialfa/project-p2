@@ -14,6 +14,7 @@ import { store } from "./store";
 import Movies from "./pages/Movies";
 import Popular from "./pages/Popular";
 import Genres from "./pages/Genres";
+import Favorites from "./pages/Favorites";
 
 function App() {
   const router = createBrowserRouter([
@@ -49,6 +50,10 @@ function App() {
         {
           path: "/genres/:id",
           element: <Genres />,
+        },
+        {
+          path: "/favorites",
+          element: <Favorites />,
         },
       ],
     },

@@ -31,6 +31,11 @@ export function Navbar() {
     dispatch(fetchGenres());
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/";
+  };
+
   return (
     <header className="flex items-center justify-between bg-gray-200 px-4 py-3 text-gray-900 md:px-6 dark:bg-gray-900 dark:text-white">
       <Link to={"/h"} className="flex items-center gap-2">
@@ -90,6 +95,11 @@ export function Navbar() {
               <Link to={"/ai"}>Ai Recommendation</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <Link to={"/favorites"}>Favorites</Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
 
@@ -102,9 +112,12 @@ export function Navbar() {
             type="text"
           />
         </div>
-        <Button className="rounded-full" size="icon" variant="outline">
-          <UserIcon className="h-5 w-5" />
-          <span className="sr-only">User Menu</span>
+        <Button
+          onClick={handleLogout}
+          className="rounded-md bg-red-300"
+          variant="outline">
+          {/* <span className="sr-only">User Menu</span> */}
+          Logout
         </Button>
       </div>
     </header>
@@ -151,25 +164,6 @@ function SearchIcon(props) {
       strokeLinejoin="round">
       <circle cx="11" cy="11" r="8" />
       <path d="m21 21-4.3-4.3" />
-    </svg>
-  );
-}
-
-function UserIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round">
-      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-      <circle cx="12" cy="7" r="4" />
     </svg>
   );
 }

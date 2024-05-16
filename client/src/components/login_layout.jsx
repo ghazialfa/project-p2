@@ -15,7 +15,9 @@ export function Login_layout({ handleSubmit, handleChange, dataInput }) {
 
     try {
       const { data } = await api.post("/login/google", { googleToken });
+      console.log("🚀 ~ handleCredentialResponse ~ data:", data);
       localStorage.setItem("token", data.access_token);
+      localStorage.setItem("userId", data.user.id);
 
       navigate("/h");
     } catch (error) {

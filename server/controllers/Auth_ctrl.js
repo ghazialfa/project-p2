@@ -91,7 +91,11 @@ class Auth_ctrl {
 
       const access_token = createToken({ id: user.id });
 
-      res.status(200).json({ message: "Login Success", access_token });
+      res.status(200).json({
+        message: "Login Success",
+        access_token,
+        user: { id: user.id, username: user.username, email: user.email },
+      });
     } catch (error) {
       console.log("🚀 ~ Auth_ctrl ~ loginGoogle ~ error:", error);
       next(error);
