@@ -1,28 +1,27 @@
 "use strict";
 const tmdbAPI = require("../helpers/axios");
-// const { default: OpenAI } = require("openai");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-
-// const openai = new OpenAI({
-//   api_Key: process.env.OPENAI_API_KEY,
-//   // base_url: "https://api.aimlapi.com/",
-// });
 
 class Movies_ctrl {
   //* ─── Get All ─────────────────────────────────────────────────────────
   static async getAll(req, res, next) {
     try {
-      const { search } = req.query;
+      const { search, page = 1 } = req.query;
 
       let movies;
       if (search) {
         movies = await tmdbAPI.get("/search/movie", {
           params: {
             query: search,
+            page,
           },
         });
       } else {
-        movies = await tmdbAPI.get("/discover/movie");
+        movies = await tmdbAPI.get("/discover/movie", {
+          params: {
+            page,
+          },
+        });
       }
 
       // console.log("🚀 ~ Movies_ctrl ~ getAll ~ movies:", movies);
