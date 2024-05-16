@@ -1,7 +1,18 @@
 import { Link } from "react-router-dom";
 import Marquee from "../ui/marquee";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchMoviePoster } from "@/features/movies/moviePosterSlice";
 
 export function Home_layout() {
+  const dispatch = useDispatch();
+  const moviePoster = useSelector((state) => state.moviePoster);
+  console.log("🚀 ~ Home_layout ~ moviePoster:", moviePoster);
+
+  useEffect(() => {
+    dispatch(fetchMoviePoster());
+  }, []);
+
   return (
     <section className="w-full pt-12 md:pt-24 lg:pt-32">
       <div className="container space-y-10 xl:space-y-16">

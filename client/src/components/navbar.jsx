@@ -4,82 +4,87 @@ import {
   DropdownMenuContent,
   DropdownMenu,
 } from "@/components/ui/dropdown-menu";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchGenres } from "@/features/genres/genreSlice";
 
 export function Navbar() {
+  const dispatch = useDispatch();
+  const genres = useSelector((state) => state.genres);
+  console.log("🚀 ~ Navbar ~ genres:", genres.list.genres);
+
+  useEffect(() => {
+    dispatch(fetchGenres());
+  }, []);
+
   return (
     <header className="flex items-center justify-between bg-gray-200 px-4 py-3 text-gray-900 md:px-6 dark:bg-gray-900 dark:text-white">
-      <Link className="flex items-center gap-2" href="#">
+      <Link to={"/h"} className="flex items-center gap-2">
         <FilmIcon className="h-6 w-6" />
         <span className="text-lg font-semibold">Movie App</span>
       </Link>
-      <nav className="hidden items-center gap-4 md:flex">
-        <Link
-          className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300"
-          href="#">
-          Home
-        </Link>
-        <DropdownMenu>
-          <DropdownMenuTrigger className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer">
-            Genres
-            <ChevronDownIcon className="h-4 w-4 ml-1" />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-gray-200 text-gray-900 rounded-md shadow-lg py-2 px-4 dark:bg-gray-900 dark:text-white">
-            <DropdownMenuItem>
-              <Link
-                className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300 block py-2"
-                href="#">
-                Action
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link
-                className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300 block py-2"
-                href="#">
-                Comedy
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link
-                className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300 block py-2"
-                href="#">
-                Drama
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link
-                className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300 block py-2"
-                href="#">
-                Horror
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link
-                className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300 block py-2"
-                href="#">
-                Sci-Fi
-              </Link>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-        <Link
-          className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300"
-          href="#">
-          TV Shows
-        </Link>
-        <Link
-          className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300"
-          href="#">
-          Actors
-        </Link>
-        <Link
-          className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300"
-          href="#">
-          About
-        </Link>
-      </nav>
+      {/* <nav className="hidden items-center gap-4 md:flex">  
+      </nav> */}
+
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger className="bg-gray">
+              Movies
+            </NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-2 lg:w-[400px]">
+                <div className="mt-2">
+                  <Button size="sm" className="w-full">
+                    Popular
+                  </Button>
+                </div>
+                <div className="mt-2">
+                  <Button size="sm" className="w-full">
+                    Latest
+                  </Button>
+                </div>
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger className="bg-gray">
+              Genres
+            </NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-3 lg:w-[400px]">
+                {genres.list.genres.map(({ id, name }) => (
+                  <div key={id} className="mt-2">
+                    <Button size="sm" className="w-full">
+                      {name}
+                    </Button>
+                  </div>
+                ))}
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <Link to={"/ai"}>Ai Recommendation</Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+
       <div className="flex items-center gap-2">
         <div className="relative">
           <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400" />
@@ -95,24 +100,6 @@ export function Navbar() {
         </Button>
       </div>
     </header>
-  );
-}
-
-function ChevronDownIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round">
-      <path d="m6 9 6 6 6-6" />
-    </svg>
   );
 }
 

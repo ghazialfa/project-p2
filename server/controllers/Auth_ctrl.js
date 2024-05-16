@@ -76,7 +76,6 @@ class Auth_ctrl {
           "793591115286-vhlm035ql80pai5q5dhuh8v450jnc6cu.apps.googleusercontent.com",
       });
       const payload = ticket.getPayload();
-      // const userid = payload["sub"];
 
       let user = await User.findOne({ where: { email: payload.email } });
 

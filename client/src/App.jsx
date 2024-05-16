@@ -1,10 +1,17 @@
 import { useState } from "react";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from "react-router-dom";
 import Layout from "./components/Layout";
 import { Home_layout } from "./components/home/home_layout";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import { Provider } from "react-redux";
+import { store } from "./store";
+import Movies from "./pages/Movies";
 
 function App() {
   const router = createBrowserRouter([
@@ -16,7 +23,7 @@ function App() {
       path: "/login",
       element: <Login />,
       loader: () => {
-        return localStorage.token ? "/h" : null;
+        return localStorage.token ? redirect("/h") : null;
       },
     },
     {
@@ -25,10 +32,13 @@ function App() {
     },
     {
       element: <Layout />,
+      loader: () => {
+        return localStorage.token ? null : redirect("/login");
+      },
       children: [
         {
           path: "/h",
-          element: <></>,
+          element: <Movies />,
         },
       ],
     },
@@ -36,7 +46,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </>
   );
 }
