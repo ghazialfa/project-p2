@@ -69,16 +69,22 @@ class Favorite_ctrl {
   //* ─── Delete Favorite ─────────────────────────────────────────────────
   static async deleteFavorite(req, res, next) {
     try {
-      const { id } = req.params;
+      const { dbId } = req.params;
+      console.log("🚀 ~ Favorite_ctrl ~ deleteFavorite ~ dbId:", dbId);
       const { id: userId } = req.user;
+      console.log("🚀 ~ Favorite_ctrl ~ deleteFavorite ~ userId:", userId);
 
       const favorite = await Favorite.findOne({
-        where: { UserId: userId, MovieId: id },
+        where: { UserId: userId, MovieId: dbId },
       });
+
+      if (!favorite) {
+        return res.status(404).json({ message: "Favorite not found" });
+      }
 
       await favorite.destroy();
 
-      res.status(200).json({ message: "Success deleted favorite" });
+      res.status(200).json({ message: "Successfully deleted favorite" });
     } catch (error) {
       console.log("🚀 ~ Favorite_ctrl ~ deleteFavorite ~ error:", error);
       next(error);
