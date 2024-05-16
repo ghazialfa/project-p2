@@ -52,7 +52,7 @@ export function Login_layout() {
           </div>
           <div className="text-center text-sm">
             Don't have an account?
-            <Link className="underline" href="#">
+            <Link to={"/register"} className="underline">
               Register
             </Link>
           </div>

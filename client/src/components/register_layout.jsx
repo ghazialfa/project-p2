@@ -80,7 +80,7 @@ export function Register_layout() {
           </div>
           <div className="text-center text-sm">
             Already have an account?
-            <Link className="underline" href="#">
+            <Link to={"/login"} className="underline">
               Login
             </Link>
           </div>

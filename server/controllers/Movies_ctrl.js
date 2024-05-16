@@ -98,40 +98,6 @@ class Movies_ctrl {
 
   //* ─── Ai Recommendation ───────────────────────────────────────────────
   static async getAi(req, res, next) {
-    //! ─── Openai ──────────────────────────────────────────────────
-    // try {
-    //   const { request } = req.body;
-
-    //   if (!openai.apiKey) {
-    //     throw new Error("OpenAI API key is not configured.");
-    //   }
-
-    //   const completion = await openai.chat.completions.create({
-    //     messages: [
-    //       {
-    //         role: "system",
-    //         content:
-    //           "kamu adalah seorang yang ahli dalam film, dan setiap ditanya kamu menjawab tanpa respon yang lain dan hanya memberikan array judul movie yang sesuai merujuk kepada tmdb",
-    //       },
-    //       { role: "user", content: request },
-    //       // {
-    //       //   role: "assistant",
-    //       //   content: "The Los Angeles Dodgers won the World Series in 2020.",
-    //       // },
-    //       // { role: "user", content: "Where was it played?" },
-    //     ],
-    //     model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
-    //   });
-    //   console.log("🚀 ~ Movies_ctrl ~ getAi ~ completion:", completion);
-
-    //   console.log(completion.choices[0]);
-
-    //   res.status(200).json(completion.choices[0].message.content);
-    // } catch (error) {
-    //   console.log("🚀 ~ MoviesController ~ getAi ~ error:", error);
-    //   next(error);
-    // }
-
     //? ─── Google ──────────────────────────────────────────────────
     try {
       const { userRequest } = req.body;
@@ -149,7 +115,8 @@ class Movies_ctrl {
             role: "user",
             parts: [
               {
-                text: "kamu adalah seorang yang ahli dalam film, dan setiap ditanya kamu menjawab tanpa respon yang lain dan hanya memberikan array judul movie yang sesuai merujuk kepada tmdb",
+                text: `kamu adalah seorang yang ahli dalam film, dan setiap ditanya kamu menjawab tanpa respon yang lain dan hanya memberikan array judul movie yang sesuai merujuk kepada tmdb,
+                  contoh: ["Castle in the Sky", "My Neighbor Totoro", "Grave of the Fireflies", "Princess Mononoke", "Spirited Away", "Howl's Moving Castle", "Ponyo", "The Tale of the Princess Kaguya", "The Wind Rises", "When Marnie Was There", "The Red Turtle"]`,
               },
             ],
           },
@@ -165,9 +132,11 @@ class Movies_ctrl {
 
       const msg = userRequest;
       const result = await chat.sendMessage(msg);
+      console.log("🚀 ~ Movies_ctrl ~ getAi ~ result:", result);
       const response = await result.response;
+      console.log("🚀 ~ Movies_ctrl ~ getAi ~ response:", response);
       const text = await response.text();
-      // console.log("🚀 ~ Movies_ctrl ~ getAi ~ text:", text);
+      console.log("🚀 ~ Movies_ctrl ~ getAi ~ text:", text);
 
       const movies = [];
 
