@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-export function Login_layout() {
+export function Login_layout({ handleSubmit, handleChange, dataInput }) {
   return (
     <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-start max-w-6xl px-4 mx-auto py-6">
       <div className="rounded-lg overflow-hidden">
@@ -11,7 +11,7 @@ export function Login_layout() {
           alt="Login Image"
           className="aspect-[2/3] object-cover"
           height={600}
-          src="/placeholder.svg"
+          src="https://image.tmdb.org/t/p/original/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg"
           width={400}
         />
       </div>
@@ -22,20 +22,26 @@ export function Login_layout() {
             Enter your credentials to access your account.
           </p>
         </div>
-        <form className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
-              id="email"
-              placeholder="Enter your email address"
+              id="emailOrUsername"
+              value={dataInput.emailOrUsername}
+              onChange={handleChange}
+              name="emailOrUsername"
+              placeholder="Enter your email or username address"
               required
-              type="email"
+              type="emailOrUsername"
             />
           </div>
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>
             <Input
               id="password"
+              value={dataInput.password}
+              onChange={handleChange}
+              name="password"
               placeholder="Enter your password"
               required
               type="password"

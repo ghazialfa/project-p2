@@ -9,7 +9,10 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import { Link } from "react-router-dom";
 
-export function Register_layout() {
+export function Register_layout({ handleSubmit, handleChange, dataInput }) {
+  const { username, email, password, adult } = dataInput;
+  console.log("🚀 ~ Register_layout ~ username:", username);
+
   return (
     <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-start max-w-6xl px-4 mx-auto py-6">
       <div className="rounded-lg overflow-hidden">
@@ -17,7 +20,7 @@ export function Register_layout() {
           alt="Movie Poster"
           className="aspect-[2/3] object-cover"
           height={600}
-          src="/placeholder.svg"
+          src="https://image.tmdb.org/t/p/original/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg"
           width={400}
         />
       </div>
@@ -28,15 +31,25 @@ export function Register_layout() {
             Enter your information to get started.
           </p>
         </div>
-        <form className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="username">Username</Label>
-            <Input id="username" placeholder="Enter your username" required />
+            <Input
+              onChange={handleChange}
+              value={username}
+              name="username"
+              id="username"
+              placeholder="Enter your username"
+              required
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
+              name="email"
+              onChange={handleChange}
+              value={email}
               placeholder="Enter your email address"
               required
               type="email"
@@ -46,6 +59,9 @@ export function Register_layout() {
             <Label htmlFor="password">Password</Label>
             <Input
               id="password"
+              name="password"
+              onChange={handleChange}
+              value={password}
               placeholder="Enter your password"
               required
               type="password"
