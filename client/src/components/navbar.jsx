@@ -49,14 +49,18 @@ export function Navbar() {
             <NavigationMenuContent>
               <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-2 lg:w-[400px]">
                 <div className="mt-2">
-                  <Button size="sm" className="w-full">
-                    Popular
-                  </Button>
+                  <Link to={"/h"}>
+                    <Button size="sm" className="w-full">
+                      Latest
+                    </Button>
+                  </Link>
                 </div>
                 <div className="mt-2">
-                  <Button size="sm" className="w-full">
-                    Latest
-                  </Button>
+                  <Link to={"/popular"}>
+                    <Button size="sm" className="w-full">
+                      Popular
+                    </Button>
+                  </Link>
                 </div>
               </ul>
             </NavigationMenuContent>

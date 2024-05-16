@@ -10,16 +10,9 @@ import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Autoplay from "embla-carousel-autoplay";
-import { fetchMovies } from "@/features/movies/movieSlice";
 
-export function Movie_carousel() {
+export function Movie_carousel({ movies }) {
   const dispatch = useDispatch();
-  const movies = useSelector((state) => state.movies);
-  console.log("🚀 ~ Movie_body ~ movies:", movies.list.results);
-
-  useEffect(() => {
-    dispatch(fetchMovies());
-  }, []);
 
   const carousefRef = useRef(null);
 
@@ -45,9 +38,8 @@ export function Movie_carousel() {
           }),
         ]}>
         <CarouselContent>
-          {movies.list &&
-            movies.list.results &&
-            movies.list.results.map((movie) => (
+          {movies &&
+            movies.map((movie) => (
               <CarouselItem key={movie.id}>
                 <div className="relative w-full h-full">
                   {/* Backdrop Image */}
