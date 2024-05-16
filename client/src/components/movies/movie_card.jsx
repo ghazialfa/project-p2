@@ -1,33 +1,40 @@
 import { Card } from "@/components/ui/card";
+import { Link } from "react-router-dom";
+import { FaHeart } from "react-icons/fa";
 
 export function Movie_card({ movie }) {
   return (
-    <Card className="w-full max-w-sm rounded-lg overflow-hidden shadow-lg">
-      <div className="relative">
-        <img
-          alt="Movie Poster"
-          className="w-full h-full object-cover"
-          height="600"
-          src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-          style={{
-            aspectRatio: "400/600",
-            objectFit: "cover",
-          }}
-          width="400"
-        />
-        <div className="absolute top-4 left-4 bg-gray-900 bg-opacity-70 text-white px-3 py-1 rounded-md">
-          <div className="flex items-center gap-2">
-            <StarIcon className="w-5 h-5 fill-yellow-400" />
-            <span className="text-sm font-medium">
-              {movie.vote_average.toFixed(1)}
-            </span>
+    <Link to={`/movie/${movie.id}`}>
+      <Card className="w-full max-w-sm rounded-lg overflow-hidden relative shadow-lg">
+        <div className="relative">
+          <img
+            alt="Movie Poster"
+            className="w-full h-full object-cover"
+            height="600"
+            src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+            style={{
+              aspectRatio: "400/600",
+              objectFit: "cover",
+            }}
+            width="400"
+          />
+          <div className="absolute top-4 left-4 bg-gray-900 bg-opacity-70 text-white px-3 py-1 rounded-md">
+            <div className="flex items-center gap-2">
+              <StarIcon className="w-5 h-5 fill-yellow-400" />
+              <span className="text-sm font-medium">
+                {movie.vote_average.toFixed(1)}
+              </span>
+            </div>
           </div>
+          <button className="absolute top-4 right-4">
+            <FaHeart className="hover:fill-red-400 w-5 h-5 fill-gray-400" />
+          </button>
         </div>
-      </div>
-      <div className="p-4">
-        <h3 className="text-xl font-bold line-clamp-2">{movie.title}</h3>
-      </div>
-    </Card>
+        <div className="p-4">
+          <h3 className="text-xl font-bold line-clamp-2">{movie.title}</h3>
+        </div>
+      </Card>
+    </Link>
   );
 }
 

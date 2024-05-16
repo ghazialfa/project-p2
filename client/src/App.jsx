@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import Movies from "./pages/Movies";
+import Popular from "./pages/Popular";
 
 function App() {
   const router = createBrowserRouter([
@@ -39,6 +40,10 @@ function App() {
         {
           path: "/h",
           element: <Movies />,
+        },
+        {
+          path: "/popular",
+          element: <Popular />,
         },
       ],
     },
