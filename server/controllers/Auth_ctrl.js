@@ -3,6 +3,8 @@ const { Op } = require("sequelize");
 const { comparePassword } = require("../helpers/bcrypt");
 const { createToken } = require("../helpers/jwt");
 const { User } = require("../models");
+const { OAuth2Client } = require("google-auth-library");
+const client = new OAuth2Client();
 
 class Auth_ctrl {
   //* ─── Register ────────────────────────────────────────────────────────
@@ -58,6 +60,41 @@ class Auth_ctrl {
       });
     } catch (error) {
       console.log("🚀 ~ login ~ error:", error);
+      next(error);
+    }
+  }
+
+  //* ─── Google Login ────────────────────────────────────────────────────
+  static async loginGoogle(req, res, next) {
+    try {
+      const { googleToken } = req.body;
+      console.log("🚀 ~ Auth_ctrl ~ loginGoogle ~ req.body:", req.body);
+
+      const ticket = await client.verifyIdToken({
+        idToken: googleToken,
+        audience:
+          "793591115286-vhlm035ql80pai5q5dhuh8v450jnc6cu.apps.googleusercontent.com",
+      });
+      const payload = ticket.getPayload();
+      // const userid = payload["sub"];
+
+      let user = await User.findOne({ where: { email: payload.email } });
+
+      if (!user) {
+        const password = Math.random().toString(36);
+        user = await User.create({
+          username: payload.name,
+          email: payload.email,
+          password,
+        });
+      }
+      console.log("🚀 ~ Auth_ctrl ~ loginGoogle ~ user:", user);
+
+      const access_token = createToken({ id: user.id });
+
+      res.status(200).json({ message: "Login Success", access_token });
+    } catch (error) {
+      console.log("🚀 ~ Auth_ctrl ~ loginGoogle ~ error:", error);
       next(error);
     }
   }

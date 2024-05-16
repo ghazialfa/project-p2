@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.post("/register", Auth_ctrl.register);
 router.post("/login", Auth_ctrl.login);
+router.post("/login/google", Auth_ctrl.loginGoogle);
 
 router.get("/posters", Movies_ctrl.getPoster);
 

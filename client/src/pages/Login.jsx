@@ -20,7 +20,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      await api.post("/login", dataInput);
+      const { data } = await api.post("/login", dataInput);
       // console.log("🚀 ~ handleSubmit ~ data:", data);
 
       setDataInput({
@@ -28,6 +28,7 @@ export default function Login() {
         password: "",
       });
 
+      localStorage.setItem("token", data.access_token);
       navigate("/h");
     } catch (error) {
       console.log("🚀 ~ handleSubmit ~ error:", error);

@@ -15,6 +15,9 @@ function App() {
     {
       path: "/login",
       element: <Login />,
+      loader: () => {
+        return localStorage.token ? "/h" : null;
+      },
     },
     {
       path: "/register",
