@@ -1,0 +1,70 @@
+{
+  "hash": "8c8ce9ff",
+  "configHash": "ae222f56",
+  "lockfileHash": "e0eb40f8",
+  "browserHash": "9f483c80",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "ffacd786",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "525e19c1",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "855fa7f2",
+      "needsInterop": false
+    },
+    "react-router": {
+      "src": "../../node_modules/react-router/dist/index.js",
+      "file": "react-router.js",
+      "fileHash": "9e9d3ba2",
+      "needsInterop": false
+    },
+    "react-day-picker": {
+      "src": "../../node_modules/react-day-picker/dist/index.esm.js",
+      "file": "react-day-picker.js",
+      "fileHash": "4ac2fb2c",
+      "needsInterop": false
+    },
+    "@radix-ui/react-navigation-menu": {
+      "src": "../../node_modules/@radix-ui/react-navigation-menu/dist/index.mjs",
+      "file": "@radix-ui_react-navigation-menu.js",
+      "fileHash": "6592dcc4",
+      "needsInterop": false
+    },
+    "class-variance-authority": {
+      "src": "../../node_modules/class-variance-authority/dist/index.mjs",
+      "file": "class-variance-authority.js",
+      "fileHash": "284611d2",
+      "needsInterop": false
+    },
+    "lucide-react": {
+      "src": "../../node_modules/lucide-react/dist/esm/lucide-react.js",
+      "file": "lucide-react.js",
+      "fileHash": "9d8c8b9d",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-O2BSRFA3": {
+      "file": "chunk-O2BSRFA3.js"
+    },
+    "chunk-6IPORAYN": {
+      "file": "chunk-6IPORAYN.js"
+    },
+    "chunk-BM6B6MNN": {
+      "file": "chunk-BM6B6MNN.js"
+    },
+    "chunk-UV5CTPV7": {
+      "file": "chunk-UV5CTPV7.js"
+    }
+  }
+}
