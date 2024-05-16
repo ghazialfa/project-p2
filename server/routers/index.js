@@ -15,6 +15,5 @@ router.use(authentication);
 router.use("/movies", require("./movies"));
 router.use("/favorites", require("./favorites"));
 router.use("/genres", require("./genres"));
-router.use("/reviews", require("./reviews"));
 
 module.exports = router;

@@ -27,6 +27,7 @@ export const fetchGenres = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
+      // console.log("🚀 ~ return ~ data:", data);
       dispatch(setFetchGenres(data));
     } catch (error) {
       console.log("🚀 ~ return ~ error:", error);

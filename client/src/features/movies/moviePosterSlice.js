@@ -12,13 +12,15 @@ const moviePosterSlice = createSlice({
   initialState,
   reducers: {
     setMoviePoster: (state, action) => {
+      console.log("🚀 ~ action:", action.payload);
+
       state.list = action.payload;
     },
   },
 });
 
 export const { setMoviePoster } = moviePosterSlice.actions;
-console.log("🚀 ~ setMoviePoster:", setMoviePoster);
+// console.log("🚀 ~ setMoviePoster:", setMoviePoster);
 
 export const fetchMoviePoster = () => {
   return async (dispatch) => {

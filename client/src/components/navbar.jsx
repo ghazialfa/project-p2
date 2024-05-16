@@ -24,8 +24,8 @@ import { fetchGenres } from "@/features/genres/genreSlice";
 
 export function Navbar() {
   const dispatch = useDispatch();
-  const genres = useSelector((state) => state.genres);
-  console.log("🚀 ~ Navbar ~ genres:", genres.list.genres);
+  const { list } = useSelector((state) => state.genres);
+  // console.log("🚀 ~ Navbar ~ genres:", list);
 
   useEffect(() => {
     dispatch(fetchGenres());
@@ -67,13 +67,15 @@ export function Navbar() {
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-3 lg:w-[400px]">
-                {genres.list.genres.map(({ id, name }) => (
-                  <div key={id} className="mt-2">
-                    <Button size="sm" className="w-full">
-                      {name}
-                    </Button>
-                  </div>
-                ))}
+                {list &&
+                  list.genres &&
+                  list.genres.map(({ id, name }) => (
+                    <div key={id} className="mt-2">
+                      <Button size="sm" className="w-full">
+                        {name}
+                      </Button>
+                    </div>
+                  ))}
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
