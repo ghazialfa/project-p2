@@ -13,6 +13,7 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import Movies from "./pages/Movies";
 import Popular from "./pages/Popular";
+import Genres from "./pages/Genres";
 
 function App() {
   const router = createBrowserRouter([
@@ -44,6 +45,10 @@ function App() {
         {
           path: "/popular",
           element: <Popular />,
+        },
+        {
+          path: "/genres/:id",
+          element: <Genres />,
         },
       ],
     },

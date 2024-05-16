@@ -75,9 +75,11 @@ export function Navbar() {
                   list.genres &&
                   list.genres.map(({ id, name }) => (
                     <div key={id} className="mt-2">
-                      <Button size="sm" className="w-full">
-                        {name}
-                      </Button>
+                      <Link to={`/genres/${id}`}>
+                        <Button size="sm" className="w-full">
+                          {name}
+                        </Button>
+                      </Link>
                     </div>
                   ))}
               </ul>
