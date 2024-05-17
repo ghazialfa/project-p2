@@ -73,7 +73,7 @@ export function Movie_detail() {
                       <Link
                         key={movie.id}
                         className="group"
-                        to={`/movies/${movie.id}`}>
+                        to={`/movie/${movie.id}`}>
                         <img
                           alt="Movie Poster"
                           className="rounded-lg object-cover transition-all group-hover:scale-105"
