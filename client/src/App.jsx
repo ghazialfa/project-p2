@@ -15,6 +15,8 @@ import Movies from "./pages/Movies";
 import Popular from "./pages/Popular";
 import Genres from "./pages/Genres";
 import Favorites from "./pages/Favorites";
+import Ai from "./pages/AiRecommendation";
+import { Movie_detail } from "./pages/movie_detail";
 
 function App() {
   const router = createBrowserRouter([
@@ -54,6 +56,15 @@ function App() {
         {
           path: "/favorites",
           element: <Favorites />,
+        },
+        {
+          path: "/ai",
+          element: <Ai />,
+        },
+
+        {
+          path: "/movie/:id",
+          element: <Movie_detail />,
         },
       ],
     },

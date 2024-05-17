@@ -7,6 +7,7 @@ class Movies_ctrl {
   static async getAll(req, res, next) {
     try {
       const { search, page = 1 } = req.query;
+      console.log("🚀 ~ Movies_ctrl ~ getAll ~ search:", search);
 
       let movies;
       if (search) {
@@ -100,7 +101,8 @@ class Movies_ctrl {
     //? ─── Google ──────────────────────────────────────────────────
     try {
       const { userRequest } = req.body;
-      console.log("🚀 ~ Movies_ctrl ~ getAi ~ userRequest:", userRequest);
+      console.log("🚀 ~ Movies_ctrl ~ getAi ~ req.body:", req.body);
+      // console.log("🚀 ~ Movies_ctrl ~ getAi ~ userRequest:", userRequest);
 
       const genAI = new GoogleGenerativeAI(process.env.GOOGLE_STUDIO_API_KEY);
 

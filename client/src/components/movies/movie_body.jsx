@@ -1,24 +1,36 @@
 import { fetchMovies } from "@/features/movies/movieSlice";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { Movie_card } from "./movie_card";
 import { fetchPopular } from "@/features/movies/popularSlice";
 
 export default function Movie_body({ position }) {
   const dispatch = useDispatch();
   const movies = useSelector((state) => state.movies);
-  console.log("🚀 ~ Movie_body ~ movies:", movies.list.results);
-
-  useEffect(() => {
-    dispatch(fetchMovies());
-  }, []);
-
   const popular = useSelector((state) => state.popular);
-  console.log("🚀 ~ Movie_carousel ~ popular:", popular);
+
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    dispatch(fetchPopular());
+    if (position === "popular") {
+      dispatch(fetchPopular(page));
+    } else {
+      dispatch(fetchMovies({ page }));
+    }
+  }, [dispatch, position, page]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop + 1 >=
+        document.documentElement.scrollHeight
+      ) {
+        setPage((prevPage) => prevPage + 1);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -28,7 +40,7 @@ export default function Movie_body({ position }) {
           <div className="grid gap-6 md:gap-8 lg:gap-12">
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl">
-                {position === "popular" ? "Popular Movies" : "Lastest Movies"}
+                {position === "popular" ? "Popular Movies" : "Latest Movies"}
               </h2>
             </div>
             {position === "popular" ? (
