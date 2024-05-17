@@ -27,14 +27,22 @@ const movieSlice = createSlice({
 export const { setFetchMovies, setFetchMovieDetail, setFetchRecommendation } =
   movieSlice.actions;
 
-export const fetchMovies = () => async (dispatch) => {
+export const fetchMovies = (params) => async (dispatch, getState) => {
   try {
-    const { data } = await api.get("/movies", {
+    const { data } = await api.get(`/movies`, {
+      params,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
-    dispatch(setFetchMovies(data));
+    if (params.page > 1) {
+      const existingMovies = getState().movies.list.results;
+      dispatch(
+        setFetchMovies({ results: [...existingMovies, ...data.results] })
+      );
+    } else {
+      dispatch(setFetchMovies(data));
+    }
   } catch (error) {
     console.log("🚀 ~ fetchMovies ~ error:", error);
   }

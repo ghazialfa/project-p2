@@ -7,6 +7,7 @@ class Movies_ctrl {
   static async getAll(req, res, next) {
     try {
       const { search, page = 1 } = req.query;
+      console.log("🚀 ~ Movies_ctrl ~ getAll ~ search:", search);
 
       let movies;
       if (search) {
