@@ -1,20 +1,31 @@
 import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
-import { fetchMovieDetail } from "@/features/movies/movieSlice";
-
+import {
+  fetchMovieDetail,
+  fetchRecommendation,
+} from "@/features/movies/movieSlice";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 
 export function Movie_detail() {
   const { id } = useParams();
-
   const dispatch = useDispatch();
   const movie = useSelector((state) => state.movies.movieDetail);
-  // console.log("🚀 ~ Movie_detail ~ movieDetail:", movie);
+  const recommendation = useSelector((state) => state.movies.recommendation);
 
   useEffect(() => {
     dispatch(fetchMovieDetail(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    if (movie) {
+      dispatch(
+        fetchRecommendation({
+          userRequest: `carilah 4 film yang berhubungan dengan film ${movie.title} dari segi genre atau judul atau alur cerita utamakan yang satu sequel`,
+        })
+      );
+    }
+  }, [dispatch, movie]);
 
   return (
     <main className="flex-1 h-screen w-screen bg-gray-100 dark:bg-gray-900">
@@ -38,7 +49,11 @@ export function Movie_detail() {
               </p>
               <div className="mt-4 flex items-center gap-4">
                 <div className="flex items-center gap-1 text-yellow-500">
-                  <StarIcon className="h-5 w-5" />
+                  {Array.from({
+                    length: Math.round(movie?.vote_average / 2),
+                  }).map((_, index) => (
+                    <StarIcon key={index} className="h-5 w-5" />
+                  ))}
                 </div>
                 <span className="text-gray-600 dark:text-gray-400">
                   {movie && movie.vote_average.toFixed(1)}/10
@@ -53,7 +68,28 @@ export function Movie_detail() {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 gap-4">
-                  <Link className="group" href="#"></Link>
+                  {recommendation &&
+                    recommendation.map((movie) => (
+                      <Link
+                        key={movie.id}
+                        className="group"
+                        to={`/movies/${movie.id}`}>
+                        <img
+                          alt="Movie Poster"
+                          className="rounded-lg object-cover transition-all group-hover:scale-105"
+                          height={300}
+                          src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                          style={{
+                            aspectRatio: "200/300",
+                            objectFit: "cover",
+                          }}
+                          width={200}
+                        />
+                        <h3 className="mt-2 text-sm font-medium text-gray-900 dark:text-gray-100 line-clamp-2">
+                          {movie.title}
+                        </h3>
+                      </Link>
+                    ))}
                 </div>
               </CardContent>
             </Card>
