@@ -100,7 +100,8 @@ class Movies_ctrl {
     //? ─── Google ──────────────────────────────────────────────────
     try {
       const { userRequest } = req.body;
-      console.log("🚀 ~ Movies_ctrl ~ getAi ~ userRequest:", userRequest);
+      console.log("🚀 ~ Movies_ctrl ~ getAi ~ req.body:", req.body);
+      // console.log("🚀 ~ Movies_ctrl ~ getAi ~ userRequest:", userRequest);
 
       const genAI = new GoogleGenerativeAI(process.env.GOOGLE_STUDIO_API_KEY);
 
