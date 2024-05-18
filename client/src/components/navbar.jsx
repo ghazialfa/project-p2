@@ -49,7 +49,7 @@ export function Navbar() {
     <header className="flex items-center justify-between bg-gray-200 px-4 py-3 text-gray-900 md:px-6 dark:bg-gray-900 dark:text-white">
       <Link to={"/h"} className="flex items-center gap-2">
         <FilmIcon className="h-6 w-6" />
-        <span className="text-lg font-semibold">Movie App</span>
+        <span className="text-lg font-semibold">Moviking</span>
       </Link>
       {/* <nav className="hidden items-center gap-4 md:flex">  
       </nav> */}
