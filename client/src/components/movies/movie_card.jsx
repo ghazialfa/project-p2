@@ -70,7 +70,7 @@ export function Movie_card({ like, movie }) {
             alt="Movie Poster"
             className="w-full h-full object-cover"
             height="600"
-            src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
             style={{
               aspectRatio: "400/600",
               objectFit: "cover",

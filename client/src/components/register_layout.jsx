@@ -20,7 +20,7 @@ export function Register_layout({ handleSubmit, handleChange, dataInput }) {
           alt="Movie Poster"
           className="aspect-[2/3] object-cover"
           height={600}
-          src="https://image.tmdb.org/t/p/original/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg"
+          src="https://image.tmdb.org/t/p/w500/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg"
           width={400}
         />
       </div>

@@ -44,7 +44,7 @@ export function Movie_carousel({ movies }) {
                 <div className="relative w-full h-full">
                   {/* Backdrop Image */}
                   <img
-                    src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+                    src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
                     alt="Backdrop"
                     className="absolute inset-0 w-full h-full object-cover z-[-1] opacity-50"
                   />
@@ -69,7 +69,7 @@ export function Movie_carousel({ movies }) {
                         alt="Movie Poster"
                         className="max-w-[400px] w-full rounded-lg shadow-lg"
                         height={800}
-                        src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                        src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                         style={{
                           aspectRatio: "600/800",
                           objectFit: "cover",

@@ -78,7 +78,7 @@ export function Movie_detail() {
                           alt="Movie Poster"
                           className="rounded-lg object-cover transition-all group-hover:scale-105"
                           height={300}
-                          src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                           style={{
                             aspectRatio: "200/300",
                             objectFit: "cover",
