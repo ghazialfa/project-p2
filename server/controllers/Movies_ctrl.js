@@ -101,7 +101,7 @@ class Movies_ctrl {
     //? ─── Google ──────────────────────────────────────────────────
     try {
       const { userRequest } = req.body;
-      console.log("🚀 ~ Movies_ctrl ~ getAi ~ req.body:", req.body);
+      // console.log("🚀 ~ Movies_ctrl ~ getAi ~ req.body:", req.body);
       // console.log("🚀 ~ Movies_ctrl ~ getAi ~ userRequest:", userRequest);
 
       const genAI = new GoogleGenerativeAI(process.env.GOOGLE_STUDIO_API_KEY);
@@ -127,7 +127,11 @@ class Movies_ctrl {
           },
         ],
         generationConfig: {
-          maxOutputTokens: 100,
+          temperature: 1,
+          topP: 0.95,
+          topK: 64,
+          maxOutputTokens: 8192,
+          responseMimeType: "text/plain",
         },
       });
 
