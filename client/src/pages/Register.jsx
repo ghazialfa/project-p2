@@ -2,8 +2,10 @@ import { Register_layout } from "@/components/register_layout";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { api } from "../../utils/axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+  const navigate = useNavigate();
   const [dataInput, setDataInput] = useState({
     username: "",
     email: "",
@@ -34,6 +36,8 @@ export default function Register() {
         email: "",
         password: "",
       });
+
+      navigate("/h");
     } catch (error) {
       console.log("🚀 ~ handleSubmit ~ error:", error);
       const errMsg = error.response.data.message;

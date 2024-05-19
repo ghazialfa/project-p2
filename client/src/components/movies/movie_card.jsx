@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { api } from "../../../utils/axios";
 import Swal from "sweetalert2";
+import { setFetchRecommendation } from "@/features/movies/movieSlice";
+import { useDispatch } from "react-redux";
 
 export function Movie_card({ like, movie }) {
+  const dispatch = useDispatch();
   const handleLike = async () => {
     try {
       await api.post(

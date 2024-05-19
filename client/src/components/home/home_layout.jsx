@@ -40,7 +40,11 @@ export function Home_layout() {
           </div>
           <div className="flex flex-col items-start space-y-4">
             <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-              Watch movies so easy like you eat
+              Experience the ultimate in effortless entertainment with our movie
+              streaming app. Dive into a world of boundless enjoyment where
+              streaming your favorite films is as simple and satisfying as
+              enjoying your favorite meal – because watching movies should be as
+              easy and delightful as a bite.
             </p>
             <div className="space-x-4">
               <Link

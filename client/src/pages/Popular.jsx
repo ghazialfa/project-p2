@@ -11,7 +11,7 @@ export default function Popular() {
 
   useEffect(() => {
     dispatch(fetchPopular());
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <Movie_carousel movies={popular.popular.results} />

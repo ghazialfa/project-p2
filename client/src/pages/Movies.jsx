@@ -11,7 +11,7 @@ export default function Movies() {
 
   useEffect(() => {
     dispatch(fetchMovies());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

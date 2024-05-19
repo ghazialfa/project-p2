@@ -59,7 +59,12 @@ class Movies_ctrl {
   //* ─── Get Popular ───────────────────────────────────────────────────────────
   static async getPopular(req, res, next) {
     try {
-      const { data } = await tmdbAPI.get("movie/top_rated");
+      const { page = 1 } = req.query;
+      const { data } = await tmdbAPI.get("movie/top_rated", {
+        params: {
+          page,
+        },
+      });
       // console.log("🚀 ~ Movies_ctrl ~ getAll ~ data:", data);
       res.status(200).json(data);
     } catch (error) {

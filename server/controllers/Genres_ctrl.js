@@ -19,8 +19,10 @@ class Genres_ctrl {
   static async getMovies(req, res, next) {
     try {
       const { id } = req.params;
+      const { page = 1 } = req.query;
       const { data } = await tmdbAPI.get("/discover/movie", {
         params: {
+          page,
           with_genres: id,
         },
       });

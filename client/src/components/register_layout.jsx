@@ -67,24 +67,7 @@ export function Register_layout({ handleSubmit, handleChange, dataInput }) {
               type="password"
             />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="birthdate">Birthdate</Label>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  className="w-full flex-col h-auto items-start"
-                  variant="outline">
-                  <span className="font-semibold uppercase text-[0.65rem]">
-                    Birthdate
-                  </span>
-                  <span className="font-normal">4/2/2024</span>
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="p-0 max-w-[276px]">
-                <Calendar />
-              </PopoverContent>
-            </Popover>
-          </div>
+
           <div className="grid grid-cols-2 gap-4">
             <Button className="w-full" type="submit">
               Register
