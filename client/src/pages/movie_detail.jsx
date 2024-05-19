@@ -21,7 +21,7 @@ export function Movie_detail() {
     if (movie) {
       dispatch(
         fetchRecommendation({
-          userRequest: `carilah 4 film yang berhubungan dengan film ${movie.title} dari segi genre atau judul atau alur cerita utamakan yang satu sequel`,
+          userRequest: `carilah 4 film yang berhubungan dengan film ${movie.title} dari segi genre atau judul atau alur cerita utamakan yang satu sequel, lebih lagi sequel selanjutnya tapi jangan menunjukkan judul ${movie.title} ini lagi`,
         })
       );
     }

@@ -17,6 +17,7 @@ export default function Movie_body({ position }) {
     } else {
       dispatch(fetchMovies({ page }));
     }
+    console.log("🚀 ~ useEffect ~ page:", page);
   }, [dispatch, position, page]);
 
   useEffect(() => {

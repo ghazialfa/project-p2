@@ -2,10 +2,14 @@ import { useState } from "react";
 import { Movie_card } from "@/components/movies/movie_card";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRecommendation } from "@/features/movies/movieSlice";
+import {
+  fetchRecommendation,
+  setFetchRecommendation,
+} from "@/features/movies/movieSlice";
 
 export default function Ai() {
   const dispatch = useDispatch();
+  // dispatch(setFetchRecommendation(true));
   const [inputData, setInputData] = useState("");
   // console.log("🚀 ~ Ai ~ inputData:", inputData);
 
@@ -14,6 +18,7 @@ export default function Ai() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    inputData ? dispatch(setFetchRecommendation(true)) : null;
     dispatch(fetchRecommendation({ userRequest: inputData }));
     setInputData("");
   };
@@ -46,8 +51,8 @@ export default function Ai() {
             </form>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
               {recommendation &&
-                recommendation.map((movie) => (
-                  <Movie_card like={true} movie={movie} key={movie.id} />
+                recommendation.map((movie, index) => (
+                  <Movie_card movie={movie} key={index} />
                 ))}
             </div>
           </div>
